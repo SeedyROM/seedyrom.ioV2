@@ -32,7 +32,7 @@ function makeDepthDiv($el, depth, numEls, settings) {
 
     var darkerColor = colorLuminance($el.css('background-color'), -0.02);
 
-    // if(relY < -$el.outerHeight() || relY > $(window).height() + $el.outerHeight() + 50) return;
+    if(relY < -$el.parent().outerHeight() * 2 || relY > $(window).height() + $el.parent().outerHeight() * 2) return;
 
     var aboveVP = false;
   	if(relY < vanishingPoint) aboveVP = true;
@@ -44,7 +44,7 @@ function makeDepthDiv($el, depth, numEls, settings) {
       }
       $el.next().css({
       	marginBottom: -offset - $el.parent('.box-container').css('margin-bottom'),
-      	borderTop: offset +'px solid',
+      	borderTop: offset * 0.8 +'px solid',
         borderLeft: (settings.noLeft ? '' : '50px solid transparent'),
         borderRight: '50px solid transparent',
         width: $el.width() + settings.hackOffset,

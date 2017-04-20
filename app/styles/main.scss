@@ -1,5 +1,6 @@
 // bower:scss
 // endbower
+@import url("http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
 /* Simple CSS reset. */
 @import url("//fonts.googleapis.com/css?family=Lato|Open+Sans|Abril+Fatface|Archivo+Black|Raleway|Space+Mono|Unica+One");
 *, body, button, input, textarea, select {
@@ -348,15 +349,41 @@ body {
 }
 
 #back {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
-  padding: 1em;
-  display: none;
+  padding: 30px 30px;
+  /* line-height: 0; */
+  font-size: 40pt;
+  background: #FFF;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  opacity: 0;
+  margin: 30px;
+  transition: box-shadow 0.3s ease;
+  z-index: 5;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  i {
+    margin-top: -0.37em;
+    display: block;
+    margin-left: -0.12em;
+
+    &.ion-android-arrow-up {
+      margin-left: -2.5px;
+    }
+  }
 }
 
 #info-container {
   background: url("../images/brickwall.jpg");
   background-repeat: repeat-y;
   background-position: center;
+  opacity: 0;
 }
