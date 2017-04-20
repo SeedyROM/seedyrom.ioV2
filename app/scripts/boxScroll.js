@@ -42,11 +42,17 @@ function makeDepthDiv($el, depth, numEls, settings) {
       	$el.after('<div class="depth-after"></div>');
         $el.prev().remove();
       }
+			if(!$el.parent().is(':first-of-type')) {
+				$el.parent().css({
+					marginTop: -offset,
+					marginBottom: ''
+				});
+			}
       $el.next().css({
       	marginBottom: -offset - $el.parent('.box-container').css('margin-bottom'),
-      	borderTop: offset * 0.8 +'px solid',
+      	borderTop: offset * 0.7 +'px solid',
         borderLeft: (settings.noLeft ? '' : '50px solid transparent'),
-        borderRight: '50px solid transparent',
+        borderRight: (settings.noRight ? '' : '50px solid transparent'),
         width: $el.width() + settings.hackOffset,
         marginLeft: $el.css('margin-left'),
         marginRight: $el.css('margin-right')
@@ -57,11 +63,15 @@ function makeDepthDiv($el, depth, numEls, settings) {
       	$el.before('<div class="depth-before"></div>');
         $el.next().remove();
       }
+			$el.parent().css({
+				marginBottom: -offset * 0.7,
+				marginTop: ''
+			});
       $el.prev().css({
         marginTop: -offset - $el.parent('.box-container').css('margin-top'),
       	borderBottom: offset +'px solid',
         borderLeft: (settings.noLeft ? '' : '50px solid transparent'),
-        borderRight: '50px solid transparent',
+        borderRight: (settings.noRight ? '' : '50px solid transparent'),
         width: $el.width() + settings.hackOffset,
         marginLeft: $el.css('margin-left'),
         marginRight: $el.css('margin-right')

@@ -70,7 +70,7 @@ $('a').on('click', function(e) {
     duration: 300,
     easeing: 'easeOutSine',
     complete: function() {
-			$(window).scrollTop(0).scroll();
+			$(window).scrollTop(0);
       window.location.href = $(e.target).attr('href');
     }
   })
@@ -109,7 +109,7 @@ $(document).on('ready', function() {
 $(window).on('scroll', function() {
   var $infoContainer = $('#info-container');
   if(!$infoContainer.length) return;
-  var offset = $(window).scrollTop() / 5.85;
+  var offset = $(window).scrollTop() / 4;
   $infoContainer.css({
     backgroundPosition: '0px '+ offset +'px'
   });

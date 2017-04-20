@@ -39,46 +39,74 @@ abbr, acronym {
   border: 0; }
 
 /* Font imports... */
+$fontName       : 'Kelson', sans-serif !default;
+$baseFontSize   : 22;
+$baseLineHeight : 2.5;
+$leading        : $baseLineHeight * 0.5rem;
+$scale          : 1.414;
+
+/* Font imports... */
+
 /*! Typebase.scss v0.1.0 | MIT License */
+
+// Typesetting variables. Edit these!
+
+// in pixels. This would result in 22px on desktop
+
+// how large the line height is as a multiple of font size
+
+// Rate of growth for headings
+
+// I actually like this to be slightly smaller then the leading. Makes for tight headings.
+
 /* Setup */
+
 html {
   /* Change default typefaces here */
-  font-family: 'Lato', serif;
-  font-size: 137.5%;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: auto;
-  -moz-text-size-adjust: auto;
-  -ms-text-size-adjust: auto;
-  -o-text-size-adjust: auto;
-  text-size-adjust: auto;
+  -moz-text-size-adjust    : auto;
+  -ms-text-size-adjust     : auto;
+  -o-text-size-adjust      : auto;
+  -webkit-text-size-adjust : auto;
+  text-size-adjust         : auto;
+  font-family              : $fontName,
+                             serif;
+  font-size                : $baseFontSize / 16 * 100%;
+  -webkit-font-smoothing   : antialiased;
+  // Make everything look a little nicer in webkit
 }
 
 /* Copy & Lists */
-p {
-  line-height: 1.1625rem;
-  margin-top: 1.1625rem;
-  margin-bottom: 0; }
 
-ul,
-ol {
-  margin-top: 1.1625rem;
-  margin-bottom: 1.1625rem; }
-  ul li,
-  ol li {
-    line-height: 1.1625rem; }
-  ul ul,
-  ul ol,
-  ol ul,
-  ol ol {
-    margin-top: 0;
-    margin-bottom: 0; }
+p {
+  margin-top    : $leading;
+  margin-bottom : 0;
+  line-height   : $leading;
+}
+
+ol,
+ul {
+  margin-top    : $leading;
+  margin-bottom : $leading;
+
+  li {
+    line-height : $leading;
+  }
+
+  ol,
+  ul {
+    margin-top    : 0;
+    margin-bottom : 0;
+  }
+}
 
 blockquote {
-  line-height: 1.1625rem;
-  margin-top: 1.1625rem;
-  margin-bottom: 1.1625rem; }
+  margin-top    : $leading;
+  margin-bottom : $leading;
+  line-height   : $leading;
+}
 
 /* Headings */
+
 h1,
 h2,
 h3,
@@ -86,56 +114,171 @@ h4,
 h5,
 h6 {
   /* Change heading typefaces here */
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  margin-top: 1.1625rem;
-  margin-bottom: 0;
-  line-height: 1.1625rem; }
+  margin-top    : $leading;
+  margin-bottom : 0;
+  font-family   : $fontName,
+                  sans-serif;
+  font-weight   : bold;
+  line-height   : $leading;
+}
 
 h1 {
-  font-size: 4.242rem;
-  line-height: 3.4875rem;
-  margin-top: 2.325rem; }
+  margin-top  : 2 * $leading;
+  font-size   : 3 * $scale * 1rem;
+  line-height : 3 * $leading;
+}
 
 h2 {
-  font-size: 2.828rem;
-  line-height: 2.325rem;
-  margin-top: 2.325rem; }
+  margin-top  : 2 * $leading;
+  font-size   : 2 * $scale * 1rem;
+  line-height : 2 * $leading;
+}
 
 h3 {
-  font-size: 1.414rem; }
+  font-size : 1 * $scale * 1rem;
+}
 
 h4 {
-  font-size: 0.707rem; }
+  font-size : $scale / 2 * 1rem;
+}
 
 h5 {
-  font-size: 0.4713333333rem; }
+  font-size : $scale / 3 * 1rem;
+}
 
 h6 {
-  font-size: 0.3535rem; }
+  font-size : $scale / 4 * 1rem;
+}
 
 /* Tables */
+
 table {
-  margin-top: 1.1625rem;
-  border-spacing: 0px;
-  border-collapse: collapse; }
+  margin-top      : $leading;
+  border-collapse : collapse;
+  border-spacing  : 0px;
+}
 
 td,
 th {
-  padding: 0;
-  line-height: 34.1px; }
+  padding     : 0;
+  line-height : $baseLineHeight * $baseFontSize - 0px;
+}
 
 /* Code blocks */
+
 code {
-  vertical-align: bottom; }
+  // Forces text to constrain to the line-height. Not ideal, but works.
+  vertical-align : bottom;
+}
 
 /* Leading paragraph text */
+
 .lead {
-  font-size: 1.414rem; }
+  font-size : $scale * 1rem;
+}
 
 /* Hug a the block above you */
+
 .hug {
-  margin-top: 0; }
+  margin-top : 0;
+}
+
+/* Utility classes. */
+
+.vertical-center {
+  top       : 50%;
+  transform: translateY(-50%);
+}
+
+.horizontal-center {
+  left      : 50%;
+  transform: translateY(-50%);
+}
+
+.no-select {
+  -ms-user-select     : none;
+  -webkit-user-select : none;
+  user-select         : none;
+}
+
+.true-center {
+  position  : relative;
+  top       : 50%;
+  left      : 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+
+$mobile-width: 426px;
+$tablet-width: 769px;
+$desktop-width: 1025px;
+
+@mixin small_mobile {
+  @media only screen and (max-width: #{$mobile-width - 1}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width})  and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@function convert($value, $currentUnit, $convertUnit) {
+   @if $currentUnit == px{
+
+      @if $convertUnit == ems{
+        @return $value / 16 + 0em;
+      }
+      @else if $convertUnit == percent{
+        @return percentage($value / 16);
+      }
+
+   }@else if $currentUnit == ems{
+
+      @if $convertUnit == px{
+        @return $value * 16 + 0px;
+      }
+      @else if $convertUnit == percent{
+        @return percentage($value);
+      }
+
+   }@else if $currentUnit == percent{
+
+      @if $convertUnit == px{
+        @return $value * 16 / 100 + 0px;
+      }
+      @else if $convertUnit == ems{
+        @return $value / 100 + 0em;
+      }
+
+   }@else if $currentUnit == pts{
+
+      @if $convertUnit == px{
+        @return $value * 1.3333 +0px;
+      }
+      @else if $convertUnit == ems{
+        @return $value / 12 + 0em;
+      }
+      @else if $convertUnit == percent{
+        @return percentage($value / 12)
+      }
+
+   }
+}
 
 /* Utility classes. */
 .vertical-center, .navigation {
@@ -321,6 +464,10 @@ body {
   margin: 0 auto;
   opacity: 0;
   padding-bottom: 500px;
+
+  // &:first-of-type {
+  //   padding-bottom: 0px;
+  // }
 }
 
 .heading {
@@ -337,7 +484,10 @@ body {
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
   }
   h1 {
-    padding-bottom: 9px;
+    padding-bottom: 7px;
+  }
+  h2 {
+    padding-bottom: 3px;
   }
 }
 
@@ -371,12 +521,12 @@ body {
   }
 
   i {
-    margin-top: -0.37em;
+    margin-top: -0.3em;
     display: block;
     margin-left: -0.12em;
 
     &.ion-android-arrow-up {
-      margin-left: -2.5px;
+      margin-left: -2px;
     }
   }
 }
@@ -386,4 +536,5 @@ body {
   background-repeat: repeat-y;
   background-position: center;
   opacity: 0;
+  padding-top: 0px;
 }
