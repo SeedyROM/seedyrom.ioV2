@@ -17,10 +17,16 @@ function colorLuminance(hex, lum) {
 
 function makeDepthDiv($el, depth, numEls, settings) {
   settings = settings || {};
-	settings.hackOffset = settings.hackOffset || 0;
+
+	// THE FUCK IS THIS SHIT? Random values comming from the css padding depends on page and state...
+	settings.hackOffset = -parseInt($el.css('padding-left')) - 6;
+	console.log(settings.hackOffset);
+	if(settings.hackOffset == -72) { settings.hackOffset += 22; }
+	// This was some weird demon shit right here...
+
   $(window).on('resize', function() {
-    if($el.prev().length) $el.prev().css({ width: $el.width() + settings.hackOffset });
-    if($el.next().length) $el.next().css({ width: $el.width() + settings.hackOffset });
+    if($el.prev().length) $el.prev().css({ width: $el.outerWidth(true) + settings.hackOffset });
+    if($el.next().length) $el.next().css({ width: $el.outerWidth(true) + settings.hackOffset });
   }).resize();
   $(window).on('scroll', function() {
     var vanishingPoint = ($(window).height() / 2) - ($el.outerHeight() / 2);
@@ -53,7 +59,7 @@ function makeDepthDiv($el, depth, numEls, settings) {
       	borderTop: offset * 0.7 +'px solid',
         borderLeft: (settings.noLeft ? '' : '50px solid transparent'),
         borderRight: (settings.noRight ? '' : '50px solid transparent'),
-        width: $el.width() + settings.hackOffset,
+        width: $el.outerWidth(true) + settings.hackOffset,
         marginLeft: $el.css('margin-left'),
         marginRight: $el.css('margin-right')
       });
@@ -72,7 +78,7 @@ function makeDepthDiv($el, depth, numEls, settings) {
       	borderBottom: offset +'px solid',
         borderLeft: (settings.noLeft ? '' : '50px solid transparent'),
         borderRight: (settings.noRight ? '' : '50px solid transparent'),
-        width: $el.width() + settings.hackOffset,
+        width: $el.outerWidth(true) + settings.hackOffset,
         marginLeft: $el.css('margin-left'),
         marginRight: $el.css('margin-right')
       });
