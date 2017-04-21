@@ -518,15 +518,10 @@ body {
   width: 180px; }
 
 .heading-container {
-  padding-bottom: 2em;
+  padding-bottom: 2.5em;
   position: relative;
   margin: 0 auto;
   opacity: 0;
-  padding-bottom: 500px;
-
-  // &:first-of-type {
-  //   padding-bottom: 0px;
-  // }
 }
 
 .heading {
@@ -535,6 +530,8 @@ body {
   padding: 2em 3em;
   display: inline-block;
   margin: 0 auto;
+  box-shadow: 3px 10px 20px #CCC;
+
   h1, h2, h3 {
     text-transform: uppercase;
     font-family: "Archivo Black", serif !important;
@@ -641,7 +638,7 @@ body {
 
 #info-container {
   background: url("../images/brickwall.jpg");
-  background-repeat: repeat-y;
+  background-repeat: repeat;
   background-position: center;
   opacity: 0;
   padding-top: 0px;
@@ -649,4 +646,37 @@ body {
 
 html body#info {
   min-width: 425px;
+}
+
+#me {
+  padding: 0px 0px;
+  position: relative;
+  margin-bottom: -5px;
+  margin-left: -120px;
+  z-index: 0;
+  opacity: 0;
+}
+#me-speak {
+  position: relative;
+  margin-left: 275px;
+  margin-bottom: -251px;
+  margin-top: -30px;
+  z-index: 1;
+
+}
+
+@media only screen and (max-width: 768px) {
+  #me img {
+    margin-left: 47px;
+    width: 403px;
+    image-rendering: pixelated;
+  }
+  #me-speak {
+    margin-left: 94px;
+    margin-bottom: -88px;
+    img {
+      width: 497px;
+      image-rendering: pixelated;
+    }
+  }
 }

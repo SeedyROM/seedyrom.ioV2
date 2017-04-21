@@ -159,4 +159,30 @@ console.clear();
 			}
 		});
 	});
+
+	var $meSpeak = $('#me-speak');
+	var $me = $('#me');
+	$me.velocity({
+		opacity: 1,
+		translateX: [0, -1000]
+	}, {
+		duration: 1500,
+		easeing: 'ease-out-sine',
+		complete: function() {
+			$me.velocity({
+				translateY: 10,
+			}, {
+					duration: 5000,
+					easing: 'ease-in-quint',
+					loop: true
+			});
+		}
+	});
+	$meSpeak.velocity({
+		translateY: -20,
+	}, {
+			duration: 1000,
+			easing: 'ease-in-out',
+			loop: true
+	});
 })();
